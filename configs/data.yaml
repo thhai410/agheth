@@ -1,0 +1,26 @@
+# Dataset + cleaning config — architecture.md §5
+dataset_id: NoirHuy/chatdoctor-healthcaremagic-112k-vi
+
+# logical split -> tên split thật trên HF (tên đầu tiên tồn tại được dùng)
+splits:
+  train: train
+  val:
+    - validation
+    - test
+
+# cột sạch <- lấy theo thứ tự ưu tiên từ cột thô; bỏ phần trùng (substring)
+text:
+  question:   { prefer: [input, instruction] }
+  answer:     { prefer: [output] }
+  question_en: { prefer: [input_en, instruction_en] }
+  answer_en:  { prefer: [output_en] }
+
+keep_columns: [id, language, task, source]
+
+cleaning:
+  min_question_chars: 10
+  min_answer_chars: 20
+  dedupe_on: [question, answer]
+
+output:
+  dir: data/processed

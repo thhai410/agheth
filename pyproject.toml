@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vn-health-agent"
+version = "0.1.0"
+description = "Reference agent architecture: agentic RAG (Milvus + Neo4j KG) on DeepSeek Harness — Vietnamese medical QA demo"
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.7",
+    "pydantic-settings>=2.2",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+# M0 data pipeline
+data = ["datasets>=2.19", "pandas>=2.2", "pyarrow>=16"]
+# M1 retrieval (BGE-M3 kéo torch — cài CPU-only trước nếu muốn nhẹ:
+# pip install torch --index-url https://download.pytorch.org/whl/cpu)
+retrieval = ["pymilvus>=2.5", "neo4j>=5.20", "FlagEmbedding>=0.2"]
+llm = ["openai>=1.30"]
+# M2 serving
+serve = ["fastapi>=0.111", "uvicorn>=0.30"]
+dev = [
+    "datasets>=2.19",
+    "pandas>=2.2",
+    "pyarrow>=16",
+    "openai>=1.30",
+    "pytest>=8.0",
+    "ruff>=0.5",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["agent*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "."]
+markers = ["slow: chạy subprocess/tool thật — vẫn giữ trong CI"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]

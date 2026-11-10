@@ -1,0 +1,12 @@
+# F — Ngoài phạm vi: redirect về phạm vi y tế (§9)
+id: F1
+category: F
+question: "thời tiết hôm nay thế nào?"
+llm:
+  - intent: other
+    entities: []
+    needs_clarification: false
+expect:
+  category: out_of_scope
+  answer_contains: ["ngoài phạm vi"]
+  llm_calls_exact: 1

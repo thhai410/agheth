@@ -1,0 +1,29 @@
+# A — Follow-up đa lượt: câu mơ hồ nhờ history vẫn hiểu ngữ cảnh (conversation)
+id: A3
+category: A
+question: "còn bé bị ho nhiều vào ban đêm nữa?"
+history:
+  - role: user
+    content: "bé nhà tôi sốt 3 ngày rồi nên làm gì?"
+  - role: assistant
+    content: >-
+      Với trẻ sốt 3 ngày, bạn nên theo dõi nhiệt độ, cho bé uống nhiều nước,
+      mặc đồ thoáng và nghỉ ngơi. Nếu sốt cao hoặc kéo dài, tham khảo ý kiến bác sĩ.
+llm:
+  - intent: symptom_inquiry
+    entities: [ho, sốt]
+    needs_clarification: false
+  - answer: >-
+      Bé ho nhiều về ban đêm kèm sốt 3 ngày, bạn nên để bé nằm kê cao đầu,
+      giữ ấm và theo dõi cơn ho. Nếu bé khó thở, thở nhanh hoặc ho kéo dài
+      quá 1 tuần, bạn nên tham khảo ý kiến bác sĩ để được khám cụ thể.
+    tool_calls: []
+retrieval:
+  hits: 2
+  triplets:
+    - {subject: cảm cúm, predicate: has_symptom, object: ho}
+expect:
+  category: answered
+  answer_contains: ["tham khảo ý kiến bác sĩ"]
+  citations_min: 1
+  llm_calls_exact: 2

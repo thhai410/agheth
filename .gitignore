@@ -1,0 +1,23 @@
+# secrets — never commit
+.env
+*.key
+
+# data artifacts (HF download → Parquet)
+data/
+*.parquet
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+dist/
+build/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# tooling / editors
+.idea/
+.vscode/

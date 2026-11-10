@@ -1,0 +1,41 @@
+{
+  "_note": "Bảng thuốc nhỏ cho tool drug_lookup (demo, architecture.md §8) — nguồn tham khảo công khai, KHÔNG phải tư vấn dùng thuốc.",
+  "drugs": {
+    "paracetamol": {
+      "aliases": ["acetaminophen", "hạ sốt paracetamol"],
+      "class": "thuốc giảm đau, hạ sốt",
+      "common_uses": ["sốt", "đau đầu", "đau nhức cơ thể"],
+      "notes": "Không dùng quá liều khuyến cáo; thận trọng khi có bệnh gan."
+    },
+    "ibuprofen": {
+      "aliases": ["advil"],
+      "class": "thuốc kháng viêm không steroid (NSAID)",
+      "common_uses": ["đau", "sốt", "viêm"],
+      "notes": "Không dùng khi loét dạ dày, thận yếu; tránh khi mang thai 3 tháng cuối."
+    },
+    "amoxicillin": {
+      "aliases": [],
+      "class": "kháng sinh nhóm penicillin",
+      "common_uses": ["nhiễm khuẩn (theo chỉ định của bác sĩ)"],
+      "notes": "Kháng sinh chỉ dùng khi có chỉ định y khoa; không tự ý dùng."
+    },
+    "loratadine": {
+      "aliases": ["claritin"],
+      "class": "thuốc kháng histamin",
+      "common_uses": ["dị ứng", "mày đay", "viêm mũi dị ứng"],
+      "notes": "Có thể gây buồn ngủ nhẹ; hỏi bác sĩ nếu đang dùng thuốc khác."
+    },
+    "omeprazole": {
+      "aliases": [],
+      "class": "thuốc ức chế bơm proton",
+      "common_uses": ["trào ngược dạ dày", "viêm loét dạ dày"],
+      "notes": "Dùng theo chỉ định; không tự ý kéo dài thời gian dùng."
+    },
+    "ors": {
+      "aliases": ["nước oresol", "oresol"],
+      "class": "dung dịch bù nước và điện giải",
+      "common_uses": ["tiêu chảy", "nôn", "sốt mất nước"],
+      "notes": "Pha đúng hướng dẫn; mất nước nặng cần đến cơ sở y tế."
+    }
+  }
+}

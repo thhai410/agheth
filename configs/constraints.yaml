@@ -1,0 +1,95 @@
+# Ràng buộc an toàn — fail-closed: nghi ngờ là chặn (architecture.md §7).
+# Đổi file này = đổi contract an toàn -> duyệt qua MR (HITL G0).
+#
+# Match: keywords/patterns = substring không phân biệt hoa thường (tiếng Việt);
+# pii_patterns = regex Python. Response cố định dùng khi trigger.
+
+emergency_keywords:
+  - đau ngực
+  - khó thở
+  - tức ngực
+  - tự hại
+  - tự tử
+  - đột quỵ
+  - đột ngột yếu liệt
+  - co giật
+  - động kinh
+  - mất ý thức
+  - ngất xỉu
+  - ngưng tim
+  - chảy máu không cầm
+  - ngộ độc
+  - sốc phản vệ
+  - bỏng nặng
+  - gãy xương hở
+
+# Không chẩn đoán (output)
+diagnosis_patterns:
+  - "bạn bị bệnh"
+  - "bạn bị mắc"
+  - "bạn đang mắc"
+  - "bạn mắc bệnh"
+  - "chẩn đoán của bạn"
+  - "bạn được chẩn đoán"
+  - "kết luận là bệnh"
+  - "chắc chắn bạn bị"
+
+# Không kê đơn (output)
+prescription_patterns:
+  - "kê đơn"
+  - "kê thuốc"
+  - "bạn nên uống"
+  - "bạn hãy uống"
+  - "uống thuốc"
+  - "dùng thuốc"
+  - "dùng liều"
+  - "liều lượng cho bạn"
+
+# Prompt injection / jailbreak (input lẫn tài liệu truy xuất)
+injection_patterns:
+  - "bỏ qua chỉ dẫn"
+  - "bỏ qua mọi"
+  - "bỏ qua lệnh"
+  - "quên chỉ dẫn"
+  - "ignore previous"
+  - "ignore all instructions"
+  - "ignore the above"
+  - "system prompt"
+  - "prompt của bạn"
+  - "jailbreak"
+  - "developer mode"
+  - "bạn là một mô hình khác"
+
+# PII — không phản hồi lại thông tin nhạy cảm (regex)
+pii_patterns:
+  - "0\\d{9}"                          # số điện thoại VN 10 số
+  - "[\\w.+-]+@[\\w-]+\\.[\\w.]+"      # email
+  - "\\b\\d{12}\\b"                    # CCCD 12 số
+  - "\\b\\d{9}\\b"                     # CMND 9 số
+
+fixed_responses:
+  emergency: >-
+    Đây có thể là tình huống cấp cứu nguy hiểm đến tính mạng.
+    Vui lòng gọi cấp cứu 115 hoặc đến cơ sở y tế gần nhất NGAY.
+    Tôi không thể thay thế bác sĩ trong tình huống này.
+  blocked_injection: >-
+    Yêu cầu của bạn chứa nội dung không hợp lệ nên tôi không thể xử lý.
+    Vui lòng đặt câu hỏi sức khỏe một cách bình thường.
+  blocked_pii: >-
+    Câu hỏi chứa thông tin cá nhân nhạy cảm. Vui lòng KHÔNG chia sẻ
+    số điện thoại, email, CCCD... và đặt lại câu hỏi sức khỏe của bạn.
+  refuse: >-
+    Tôi không thể chẩn đoán bệnh hay kê đơn thuốc. Đây chỉ là demo tham khảo.
+    Bạn nên tham khảo ý kiến bác sĩ để được khám và tư vấn phù hợp.
+  out_of_scope: >-
+    Câu hỏi này nằm ngoài phạm vi sức khỏe/y tế của trợ lý.
+    Mời bạn đặt câu hỏi về triệu chứng, sức khỏe hoặc thuốc men.
+  clarification: >-
+    Bạn có thể mô tả rõ hơn không? Ví dụ: triệu chứng kéo dài bao lâu,
+    mức độ nặng nhẹ, và có kèm theo dấu hiệu gì khác?
+  fallback: >-
+    Xin lỗi, tôi chưa thể trả lời câu hỏi này một cách an toàn.
+    Bạn nên tham khảo ý kiến bác sĩ để được tư vấn trực tiếp.
+  disclaimer: >-
+    (Thông tin mang tính tham khảo từ demo, không thay thế chẩn đoán hay
+    tư vấn y khoa.)

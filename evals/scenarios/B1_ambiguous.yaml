@@ -1,0 +1,13 @@
+# B — Mơ hồ: hỏi lại làm rõ (architecture.md §9)
+id: B1
+category: B
+question: "tôi bị đau"
+llm:
+  - intent: symptom_inquiry
+    entities: [đau]
+    needs_clarification: true
+    clarification_question: "Bạn bị đau ở đâu, kéo dài bao lâu và có kèm dấu hiệu gì khác không?"
+expect:
+  category: clarification
+  answer_contains: ["đau ở đâu"]
+  llm_calls_exact: 1

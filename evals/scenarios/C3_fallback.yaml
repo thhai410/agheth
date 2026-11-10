@@ -1,0 +1,22 @@
+# C — Output chẩn đoán lặp lại không sửa được: gate fail đủ 2 vòng correction
+# -> fallback an toàn. 1 extract + 3 generate = 4 LLM calls (mức tối đa của pipeline)
+id: C3
+category: C
+question: "tôi bị cảm cúm thì nên làm gì?"
+llm:
+  - intent: symptom_inquiry
+    entities: [cảm cúm]
+    needs_clarification: false
+  - answer: "bạn bị bệnh cảm cúm rồi."
+    tool_calls: []
+  - answer: "bạn bị bệnh cảm cúm rồi."
+    tool_calls: []
+  - answer: "bạn bị bệnh cảm cúm rồi."
+    tool_calls: []
+retrieval:
+  hits: 2
+expect:
+  category: fallback
+  answer_contains: ["xin lỗi"]
+  answer_not_contains: ["bạn bị bệnh"]
+  llm_calls_exact: 4

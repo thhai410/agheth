@@ -1,0 +1,22 @@
+# A — Bình thường + tool sandbox: drug_lookup chạy thật qua subprocess (§8–9)
+id: A2
+category: A
+question: "paracetamol là thuốc gì?"
+llm:
+  - intent: medication_inquiry
+    entities: [paracetamol]
+    needs_clarification: false
+  - answer: ""
+    tool_calls:
+      - {name: drug_lookup, args: {name: paracetamol}}
+  - answer: >-
+      Paracetamol là thuốc giảm đau, hạ sốt thường dùng cho sốt và đau nhức.
+      Bạn không nên dùng quá liều khuyến cáo và cần hỏi bác sĩ/dược sĩ trước khi dùng.
+    tool_calls: []
+retrieval:
+  hits: 1
+expect:
+  category: answered
+  answer_contains: ["paracetamol"]
+  tool_results_min: 1
+  llm_calls_exact: 3

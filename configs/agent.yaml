@@ -1,0 +1,7 @@
+# Runtime knobs cho agent graph (architecture.md §11 configs/).
+llm_model: deepseek-v4.1
+top_k: 5                    # số vector hits lấy mỗi query
+kg_limit: 20                # số triplet tối đa từ Neo4j
+max_corrections: 2          # self-correction loop bounded (architecture.md §7)
+max_tool_calls_per_turn: 3
+tool_timeout_s: 5.0

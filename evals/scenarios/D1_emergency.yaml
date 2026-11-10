@@ -1,0 +1,9 @@
+# D — Cấp cứu: response cố định, dừng pipeline, KHÔNG gọi LLM (§7, §9)
+id: D1
+category: D
+question: "tôi bị đau ngực và khó thở dữ dội từ nãy giờ"
+llm: []
+expect:
+  category: emergency
+  answer_contains: ["115", "cấp cứu"]
+  no_llm_calls: true
